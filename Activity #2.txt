@@ -1,0 +1,8 @@
+create table hotel(hotelNo numeric(4) primary key,hotelName varchar(30) not null,city varchar(30) not null);
+
+create table room(roomNo numeric(3) primary key,hotelNo numeric(4),type varchar(20) not null,price numeric(7,2) default 0.00 not null,index (hotelNo),constraint foreign key(hotelNo)references hotel(hotelNo));
+
+create table guest(guestNo numeric(4) primary key,guestName varchar(35) not null,guestAddress varchar(50) not null);
+
+create table booking(hotelNo numeric(4),guestNo numeric(4),dateFrom date not null,dateTo date not null,roomNo numeric(3),index (roomNo),index (hotelNo),index (guestNo),constraint foreign key(hotelNo)references hotel(hotelNo),constraint foreign key(roomNo)references room(roomNo),constraint foreign key(guestNo)references guest(guestNo));
+
